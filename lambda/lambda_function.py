@@ -23,9 +23,9 @@ def lambda_handler(event, context):
     cluster.shutdown()
 
     json_data = json.dumps(result)
-    # file_path = "/tmp/motion_sensor_data.json"
-    # with open(file_path, "w") as file:
-        # file.write(json_data)
+    file_path = "/tmp/motion_sensor_data.json"
+    with open(file_path, "w") as file:
+        file.write(json_data)
     
     # Retrieve AWS credentials and region from environment variables
     aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -34,11 +34,13 @@ def lambda_handler(event, context):
     # Store the results in S3
     bucket_name = 'iot-sensordata-bucket'
     object_key = 'motion_sensor_data.json'
-    s3.put_object(
-        Bucket=bucket_name,
-        Key=object_key,
-        Body=json_data
-    )
+    s3_client = boto3.client("s3", region_name=region, aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+    s3_client.upload_file(file_path, bucket_name, object_key)
+    # s3.put_object(
+        # Bucket=bucket_name,
+        # Key=object_key,
+        # Body=json_data
+    # )
     
     return {
         'statusCode': 200,
