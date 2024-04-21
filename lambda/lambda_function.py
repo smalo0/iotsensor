@@ -30,7 +30,7 @@ def lambda_handler(event, context):
     # Retrieve AWS credentials and region from environment variables
     aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
     aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
-    region = os.environ.get('AWS_REGION')
+    region = os.environ.get('AWS_DEFAULT_REGION')
     # Store the results in S3
     bucket_name = 'iot-sensordata-bucket'
     object_key = 'motion_sensor_data.json'
