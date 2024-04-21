@@ -2,7 +2,7 @@ import json
 import boto3 
 
 def lambda_handler(event, context):
-  file_path = "/tmp/motion_sensor_data.json"
+  file_path = "/data/motion_sensor_data.json"
   
   # Retrieve AWS credentials and region from environment variables
   aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
