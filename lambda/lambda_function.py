@@ -23,7 +23,7 @@ def lambda_handler(event, context):
     cluster.shutdown()
 
     json_data = json.dumps(result)
-    file_path = "/tmp/motion_sensor_data.json"
+    file_path = "/data/motion_sensor_data.json"
     with open(file_path, "w") as file:
         file.write(json_data)
     
