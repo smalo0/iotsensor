@@ -2,7 +2,7 @@ import json
 import boto3
 from cassandra.cluster import Cluster
 
-s3 = boto3.client('s3')
+#s3 = boto3.client('s3')
 
 def lambda_handler(event, context):
     # Connect to Cassandra
@@ -35,7 +35,7 @@ def lambda_handler(event, context):
     bucket_name = 'iot-sensordata-bucket'
     object_key = 'motion_sensor_data.json'
     s3_client = boto3.client("s3", region_name=region, aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
-    s3_client.upload_file(file_path, bucket_name, object_key)
+    s3_client.upload_file(json_data, bucket_name, object_key)
     # s3.put_object(
         # Bucket=bucket_name,
         # Key=object_key,
