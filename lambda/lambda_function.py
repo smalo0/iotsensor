@@ -21,17 +21,22 @@ def lambda_handler(event, context):
     # Close the Cassandra session and cluster
     session.shutdown()
     cluster.shutdown()
+
+    json_data = json.dumps(result)
+    filepath = "/tmp/motion_sensor_data.json"
+    with open(file_path, "w") as file:
+        file.write(json_data)
     
     # Store the results in S3
-    bucket_name = 'iot-sensordata-bucket'
-    object_key = 'motion_sensor_data.json'
-    s3.put_object(
-        Bucket=bucket_name,
-        Key=object_key,
-        Body=json.dumps(result)
-    )
+    # bucket_name = 'iot-sensordata-bucket'
+    # object_key = 'motion_sensor_data.json'
+    #s3.put_object(
+        # Bucket=bucket_name,
+        # Key=object_key,
+        # Body=json.dumps(result)
+    #)
     
     return {
         'statusCode': 200,
-        'body': json.dumps({'message': 'Data stored in S3 successfully'})
+        'body': json.dumps({'message': 'Data retrieved successfully'})
     }
