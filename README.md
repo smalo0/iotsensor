@@ -10,6 +10,6 @@ Initial database processing functions.
 
 (hazelcast.com)
 <p>Output stored in temporary .json file.</p>
-<p> upload_to_bucket.py moves the .json file to an AWS S3 bucket to be later used in web page. Credentials done with AWS Secrets Manager.</p>
+<p> **upload_to_bucket** moves the .json file to an AWS S3 bucket to be later used in web page. Credentials done with AWS Secrets Manager.</p>
 > [!NOTE]
 > These functions only need to be run once. In a time-series implementation they would be synchronous with alerts.  
