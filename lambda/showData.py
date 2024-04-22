@@ -12,8 +12,8 @@ def lambda_handler(event, context):
 
     try:
         # Retrieve AWS credentials and region from environment variables
-        aws_access_key_id = os.environ.get('AWS_ACCESS_KEY_ID')
-        aws_secret_access_key = os.environ.get('AWS_SECRET_ACCESS_KEY')
+        aws_access_key_id = os.environ.get('AWS_AMPLIFY_ACCESS_KEY_ID')
+        aws_secret_access_key = os.environ.get('AWS_AMPLIFY_SECRET_ACCESS_KEY')
         region = os.environ.get('AWS_DEFAULT_REGION')
         
         # Retrieve data from S3
