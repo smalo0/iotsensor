@@ -30,15 +30,14 @@ def lambda_handler(event, context):
     # Process the results
     result = []
     for row in rows:
-        row1 = str(row['device_id'])
-        row['device_id'] = row
+        row['device_id'] = str(row['device_id'])
         result.append(row)
 
     # Close the Cassandra session and cluster
     session.shutdown()
     cluster.shutdown()
 
-    json_data = json.dumps(result)
+    json_data = json.dumps(result, cls=UUIDEncoder)
     file_path = "/data/motion_sensor_data.json"
     with open(file_path, "w") as file:
         file.write(json_data)
