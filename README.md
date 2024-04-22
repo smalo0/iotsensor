@@ -4,7 +4,8 @@ Objective: user views motion sensor alert data on web page dashboard. Similar to
 
 ## lambda_function.py and upload_to_bucket.py: 
 Initial database processing functions.
-<p>**lambda_function** retrieves data from GCP database with IAM authorization. Data serialization done for formatting.</p> 
+**lambda_function** retrieves data from GCP database with IAM authorization. Data serialization done for formatting.
+  
 ![serialization-deserialization-diagram-800x318-1](https://github.com/smalo0/iotsensor/assets/128261499/1fb9b884-4f2f-4a6e-897e-537b7f50ecbb)
 (hazelcast.com)
 Output stored in temporary .json file.
