@@ -22,6 +22,8 @@ Final Dashboard Link: https://main.d1equeg4qxhvnm.amplifyapp.com/
 
 ## showData.py 
 
-lambda function program that triggers when data is stored in S3. .zip file used for actual lambda deployment on console. 
+lambda function program that triggers when data is stored in S3. 
+
+**.zip file** used for actual lambda deployment on console. 
 
 **src folder:** temporary html file for Amplify deployment testing. 
