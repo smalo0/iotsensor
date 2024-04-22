@@ -16,3 +16,12 @@ Output stored in temporary .json file.
  
 > [!NOTE]
 > These functions only need to be run once. In a time-series implementation they would be synchronous with alerts.  
+
+
+Final Dashboard Link: https://main.d1equeg4qxhvnm.amplifyapp.com/
+
+## showData.py 
+
+lambda function program that triggers when data is stored in S3. .zip file used for actual lambda deployment on console. 
+
+**src folder:** temporary html file for Amplify deployment testing. 
