@@ -30,7 +30,8 @@ def lambda_handler(event, context):
     # Process the results
     result = []
     for row in rows:
-        row['device_id'] = str(row['device_id'])
+        row1 = str(row['device_id'])
+        row['device_id'] = row
         result.append(row)
 
     # Close the Cassandra session and cluster
