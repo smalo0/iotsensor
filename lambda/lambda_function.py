@@ -1,11 +1,14 @@
 import json
 from cassandra.cluster import Cluster
 import uuid
+from datetime import datetime
 
 
-class UUIDEncoder(json.JSONEncoder):
+class CustomJSONEncoder(json.JSONEncoder):
     def default(self, obj):
-        if isinstance(obj, uuid.UUID):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        elif isinstance(obj, uuid.UUID):
             return str(obj)
         return super().default(obj)
 
@@ -42,13 +45,14 @@ def lambda_handler(event, context):
     result = []
     for row in database_rows:
         row['device_id'] = str(row['device_id'])
+        row['timestmap'] = row['timestamp'].isoformat()
         result.append(row)
 
     # Close the Cassandra session and cluster
     session.shutdown()
     cluster.shutdown()
 
-    json_data = json.dumps(result, cls=UUIDEncoder)
+    json_data = json.dumps(result, cls=CustomJSONEncoder)
     file_path = "/data/motion_sensor_data.json"
     with open(file_path, "w") as file:
         file.write(json_data)
