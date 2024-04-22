@@ -27,9 +27,20 @@ def lambda_handler(event, context):
     prepared_statement = session.prepare("SELECT * FROM motion_sensor_nosec WHERE state='True' ALLOW FILTERING;")
     rows = session.execute(prepared_statement)
 
+    # Convert from tuple to dictionary  
+    database_rows = []
+    for row_tuple in rows:
+        row_dict = {
+            'device_id': row_tuple[0],
+            'timestamp': row_tuple[1],
+            'state': row_tuple[2],
+            'value': row_tuple[3]
+        }
+        database_rows.append(row_dict)
+    
     # Process the results
     result = []
-    for row in rows:
+    for row in database_rows:
         row['device_id'] = str(row['device_id'])
         result.append(row)
 
