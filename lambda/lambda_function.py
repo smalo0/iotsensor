@@ -1,5 +1,13 @@
 import json
 from cassandra.cluster import Cluster
+import uuid
+
+
+class UUIDEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, uuid.UUID):
+            return str(obj)
+        return super().default(obj)
 
 
 def lambda_handler(event, context):
@@ -22,8 +30,8 @@ def lambda_handler(event, context):
     # Process the results
     result = []
     for row in rows:
+        row['device_id'] = str(row['device_id'])
         result.append(row)
-        print(row)
 
     # Close the Cassandra session and cluster
     session.shutdown()
