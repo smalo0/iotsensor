@@ -9,6 +9,6 @@ Initial database processing functions.
 ![serialization-deserialization-diagram-800x318-1](https://github.com/smalo0/iotsensor/assets/128261499/1fb9b884-4f2f-4a6e-897e-537b7f50ecbb)
 (hazelcast.com)
 <p>Output stored in temporary .json file.</p>
-<p>**upload_to_bucket.py** moves the .json file to an AWS S3 bucket to be later used in web page. Credentials done with AWS Secrets Manager.</p>
+<p> The **upload_to_bucket.py** moves the .json file to an AWS S3 bucket to be later used in web page. Credentials done with AWS Secrets Manager.</p>
 > [!NOTE]
 > These functions only need to be run once. In a time-series implementation they would be synchronous with alerts.  
