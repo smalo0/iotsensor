@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion Detected Alerts</title>
+</head>
+<body>
+    <div id="data-container"></div>
+
+    <script>
+        // Fetch JSON data from the API endpoint
+        async function fetchData() {
+            try {
+                const response = await fetch('YOUR_API_ENDPOINT_URL_HERE');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                return null;
+            }
+        }
+
+        async function renderData() {
+            const dataContainer = document.getElementById('data-container');
+            const jsonData = await fetchData();
+
+            if (jsonData) {
+                dataContainer.innerHTML = '';
+
+                // Reverse order to get the most recent alerts first.
+                for (let i = jsonData.length - 1; i >= 0; i--) {
+                  const item = jsonData[i];  
+                  if (item.state == 'True') {
+                      const listItem = document.createElement('div');
+                      listItem.textContent = `Alert! Motion detected at: ${item.timestamp}`;
+                      dataContainer.appendChild(listItem);
+                    }
+                }
+            } else {
+                dataContainer.textContent = 'Failed to fetch data. Please try again later.';
+            }
+        }
+
+        // Call renderData function when the page loads
+        window.onload = renderData;
+    </script>
+</body>
+</html>
