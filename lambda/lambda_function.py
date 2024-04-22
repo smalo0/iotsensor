@@ -22,7 +22,7 @@ def lambda_handler(event, context):
     # Process the results
     result = []
     for row in rows:
-        result.append(dict(row))
+        result.append(row)
         print(row)
 
     # Close the Cassandra session and cluster
